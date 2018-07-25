@@ -19,30 +19,34 @@ function player(x, y) {
     this.rY = 10;
     this.tpX;
     this.tpY;
-    this.RTT = false;
+		this.RTT = false;
+		this.distChar = 1;
+		this.fillRate = 1;
 
     this.show = function () {
         stroke(255);
         //ellipse(this.x, this.y, this.r, this.r);
-        ellipse(this.x, this.y, this.rX, this.rY);
+				ellipse(this.x, this.y, this.rX, this.rY);
+				//ellipse(this.x, this.y, this.distChar, this.distChar);
         if (this.RTT) {
             stroke(255, 0, 0);
             ellipse(this.tpX, this.tpY, noise(this.nOne) * 9, noise(this.nTwo) * 9);
-        }
+				}
+				
     }
 
     this.teleport = function () {
         if (this.RTT) {
             this.x = this.tpX;
             this.y = this.tpY;
-            this.RTT = false;
+						this.RTT = false;
+						this.distChar = 1;
         }
     }
 
     this.collisionBox = function () {
-        if (this.x > width - this.r/2) { //right
+        if (this.x > width - this.r/2) { //righta
             this.x = this.r;
-            console.log(this.x);
         }
         if (this.x < this.r) { //left
             this.x = width - this.r / 2;
